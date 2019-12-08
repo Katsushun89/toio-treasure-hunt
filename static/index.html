@@ -19,8 +19,8 @@
 </div>
 
 <div class="display-if-connected">
-  <h2 class="section center">家の中からtoioカードを探して、toioを乗せろ</h2>
-  <h2 class="section center">ヒント1:お風呂</h2>
+<!--  <h2 class="section center">家の中からtoioカードを探して、toioを乗せろ</h2>
+  <h2 class="section center">ヒント1:お風呂</h2>-->
   <table id="move" class="section">
     <tbody>
       <tr>
@@ -54,6 +54,25 @@
     <button id="turnOffLight" class="pure-button button-colored" style="background: rgb(70, 70, 70);">Off</button>
   </div>
 
+  <!--
+  <div id="playPresetSound">
+    <div class="section center">
+      <button class="pure-button" data-sound-id="0"><i class="fas fa-music"></i> 0</button>
+      <button class="pure-button" data-sound-id="1">1</button>
+      <button class="pure-button" data-sound-id="2">2</button>
+      <button class="pure-button" data-sound-id="3">3</button>
+      <button class="pure-button" data-sound-id="4">4</button>
+      <button class="pure-button" data-sound-id="5">5</button>
+    </div>
+    <div class="section center">
+      <button class="pure-button" data-sound-id="6">6</button>
+      <button class="pure-button" data-sound-id="7">7</button>
+      <button class="pure-button" data-sound-id="8">8</button>
+      <button class="pure-button" data-sound-id="9">9</button>
+      <button class="pure-button" data-sound-id="10">10</button>
+    </div>
+  </div>
+-->
   <table class="section pure-table">
     <thead>
       <tr>
@@ -72,40 +91,14 @@
         <td>id</td>
         <td id="id"></td>
       </tr>
-
-      <tr>
-        <td>battery</td>
-        <td>
-          <span id="battery"></span>
-          <button id="getBatteryStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
-        </td>
-      </tr>
-
-      <tr>
+     <tr>
         <td>button</td>
         <td>
           <span id="button"></span>
           <button id="getButtonStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
         </td>
       </tr>
-
-      <tr>
-        <td>collision</td>
-        <td>
-          <span id="collision"></span>
-          <button id="getCollisionStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
-        </td>
-      </tr>
-
-      <tr>
-        <td>slope</td>
-        <td>
-          <span id="slope"></span>
-          <button id="getSlopeStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
-        </td>
-      </tr>
-
-      <tr>
+     <tr>
         <td>position-id</td>
         <td id="position-id"></td>
       </tr>
