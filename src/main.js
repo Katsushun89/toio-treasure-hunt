@@ -10,7 +10,15 @@ document.getElementById('connect').addEventListener('click', async () => {
   await cube.connect();
 //  cube.on('id:position-id', info => (document.getElementById('position-id').innerHTML = JSON.stringify(info)));
 //  cube.on('id:position-id-missed', () => (document.getElementById('position-id').innerHTML = ''));
-  cube.on('id:standard-id', info => (document.getElementById('standard-id').innerHTML = JSON.stringify(info)));
+  cube.on('id:standard-id', info => {
+    document.getElementById('standard-id').innerHTML = JSON.stringify(info);
+    var hint1_content = '';
+    var id = info.standardId;
+    if(id == '3670054') hint1_content = 'ほげほげ';
+    document.getElementById('hint1').innerHTML = hint1_content;
+
+  });
+  
   cube.on('id:standard-id-missed', () => (document.getElementById('standard-id').innerHTML = ''));
 
   document.body.className = 'cube-connected';
