@@ -8,8 +8,8 @@ document.getElementById('connect').addEventListener('click', async () => {
   document.body.className = 'cube-connecting';
 
   await cube.connect();
-  cube.on('id:position-id', info => (document.getElementById('position-id').innerHTML = JSON.stringify(info)));
-  cube.on('id:position-id-missed', () => (document.getElementById('position-id').innerHTML = ''));
+//  cube.on('id:position-id', info => (document.getElementById('position-id').innerHTML = JSON.stringify(info)));
+//  cube.on('id:position-id-missed', () => (document.getElementById('position-id').innerHTML = ''));
   cube.on('id:standard-id', info => (document.getElementById('standard-id').innerHTML = JSON.stringify(info)));
   cube.on('id:standard-id-missed', () => (document.getElementById('standard-id').innerHTML = ''));
 
