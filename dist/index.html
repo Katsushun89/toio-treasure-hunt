@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"/>
+<link rel="stylesheet" href="main.css" />
+<script src="https://kit.fontawesome.com/9d66a93942.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="cube-disconnected">
+<h1 class="section center">toio 宝探しゲーム <i class="far fa-gem"></i></h1>
+
+<div class="section display-if-disconnected">
+  <button id="connect" class="pure-button pure-button-primary button-block">connect to cube</button>
+</div>
+
+<div class="section display-if-connecting center">
+  connecting ...
+</div>
+
+<div class="display-if-connected">
+  <h2 class="section center">家の中からtoioカードを探して、toioを乗せろ</h2>
+  <h2 class="section center">ヒント1:お風呂</h2>
+  <table id="move" class="section">
+    <tbody>
+      <tr>
+        <td></td>
+        <td><button id="move-forward" class="pure-button button-huge fas fa-caret-up"></button></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><button id="move-left" class="pure-button button-huge fas fa-caret-left"></button></td>
+        <td></td>
+        <td><button id="move-right" class="pure-button button-huge fas fa-caret-right"></button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button id="move-backward" class="pure-button button-huge fas fa-caret-down"></button></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section center">
+    <button id="turnOnLight-red" class="pure-button button-colored" style="background: rgb(255, 0, 0);">
+      <i class="far fa-lightbulb"></i> Red
+    </button>
+    <button id="turnOnLight-green" class="pure-button button-colored" style="background: rgb(0, 255, 0);">
+      Green
+    </button>
+    <button id="turnOnLight-blue" class="pure-button button-colored" style="background: rgb(0, 0, 255);">
+      Blue
+    </button>
+    <button id="turnOffLight" class="pure-button button-colored" style="background: rgb(70, 70, 70);">Off</button>
+  </div>
+
+  <table class="section pure-table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>address</td>
+        <td id="address"></td>
+      </tr>
+
+      <tr>
+        <td>id</td>
+        <td id="id"></td>
+      </tr>
+
+      <tr>
+        <td>battery</td>
+        <td>
+          <span id="battery"></span>
+          <button id="getBatteryStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>button</td>
+        <td>
+          <span id="button"></span>
+          <button id="getButtonStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>collision</td>
+        <td>
+          <span id="collision"></span>
+          <button id="getCollisionStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>slope</td>
+        <td>
+          <span id="slope"></span>
+          <button id="getSlopeStatus" class="pure-button button-small fas fa-sync-alt" style="float:right"></button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>position-id</td>
+        <td id="position-id"></td>
+      </tr>
+
+      <tr>
+        <td>standard-id</td>
+        <td id="standard-id"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
