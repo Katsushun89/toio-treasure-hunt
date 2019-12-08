@@ -11,20 +11,12 @@ document.getElementById('connect').addEventListener('click', async () => {
   document.body.className = 'cube-connecting';
 
   await cube.connect();
-  cube.on('battery:battery', info => (document.getElementById('battery').innerHTML = info.level));
-  cube.on('button:press', info => (document.getElementById('button').innerHTML = info.pressed));
   cube.on('id:position-id', info => (document.getElementById('position-id').innerHTML = JSON.stringify(info)));
   cube.on('id:position-id-missed', () => (document.getElementById('position-id').innerHTML = ''));
   cube.on('id:standard-id', info => (document.getElementById('standard-id').innerHTML = JSON.stringify(info)));
   cube.on('id:standard-id-missed', () => (document.getElementById('standard-id').innerHTML = ''));
 
   document.body.className = 'cube-connected';
-});
-
-document.getElementById('getButtonStatus').addEventListener('click', async () => {
-  const e = document.getElementById('button');
-  e.innerHTML = '';
-  e.innerHTML = (await cube.getButtonStatus()).pressed;
 });
 
 document.getElementById('move-forward').addEventListener('touchstart', async () => cube.move(30, 30, 0));
