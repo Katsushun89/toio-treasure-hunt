@@ -3,6 +3,11 @@ import { NearestScanner } from '@toio/scanner';
 
 let cube = null;
 
+var is_got_hint1 = false;
+var is_got_hint2 = false;
+var hint1_text = 'レゴの2x3ブロックの中';
+var hint2_text = 'お風呂の浴槽';
+
 document.getElementById('connect').addEventListener('click', async () => {
   cube = await new NearestScanner().start();
   document.body.className = 'cube-connecting';
@@ -13,9 +18,13 @@ document.getElementById('connect').addEventListener('click', async () => {
   cube.on('id:standard-id', info => {
     document.getElementById('standard-id').innerHTML = JSON.stringify(info);
     var hint1_content = '';
+    var hint2_content = '';
+
     var id = info.standardId;
-    if(id == '3670054') hint1_content = 'ほげほげ';
+    if(id == '3670054' || is_got_hint1){ hint1_content = hint1_text; is_got_hint1 = true;}
+    if(id == '3670022' || is_got_hint2){ hint2_content = hint2_text; is_got_hint2 = true;}
     document.getElementById('hint1').innerHTML = hint1_content;
+    document.getElementById('hint2').innerHTML = hint2_content;
 
   });
   
