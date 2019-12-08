@@ -5,9 +5,6 @@ let cube = null;
 
 document.getElementById('connect').addEventListener('click', async () => {
   cube = await new NearestScanner().start();
-  document.getElementById('address').innerHTML = cube.address;
-  document.getElementById('id').innerHTML = cube.id;
-
   document.body.className = 'cube-connecting';
 
   await cube.connect();
