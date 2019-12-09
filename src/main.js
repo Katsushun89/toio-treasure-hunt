@@ -3,18 +3,16 @@ import { NearestScanner } from '@toio/scanner';
 
 let cube = null;
 
-var is_got_hint1 = false;
-var is_got_hint2 = false;
-var is_got_hint3 = false;
-var hint1_text = 'レゴの2x3ブロックが入っているケースの中';
-var hint2_text = 'マットの上でtoioを時計回りに1回,反時計回りに2回回転させろ';
-var hint3_text = '最後のカギはドラゴンボール34巻に挟まれている';
-
 var is_set_initial_angle = false;
 var last_angle;
 var last_angle2;
 var clockwise_cnt = 0;
 var counter_clockwise_cnt = 0;
+
+const hint_text = new Map([['hint1', 'マットの上でtoioを時計回りに1回,反時計回りに2回回転させろ'],
+                           ['hint2', 'ドラゴンボール34巻に挟まれている'],
+                           ['hint3', 'toioでゴールを目指せ']]);
+let got_hint = new Map();
 
 document.getElementById('connect').addEventListener('click', async () => {
   cube = await new NearestScanner().start();
@@ -23,18 +21,25 @@ document.getElementById('connect').addEventListener('click', async () => {
   await cube.connect();
   cube.on('id:standard-id', info => {
     document.getElementById('standard-id').innerHTML = JSON.stringify(info);
-    var hint1_content = '';
-    var hint2_content = '';
-
     var id = info.standardId;
 
-    if(id == '3670054'|| is_got_hint1){ hint1_content = hint1_text; is_got_hint1 = true;}
-    if(is_got_hint1){
-      if(id == '3670022'|| is_got_hint2){ hint2_content = hint2_text; is_got_hint2 = true;}
+    if(id == '3670054'){
+      got_hint.set('hint1', hint_text.get('hint1'));
+      //play sound
     }
 
+    if(id == '3670022' && got_hint.has('hint2')){
+      got_hint.set('hint3', hint_text.get('hint3'));
+      //play sound
+    }
+
+    let hint1_content = '';
+    let hint3_content = '';
+    if(got_hint.has('hint1')) hint1_content = got_hint.get('hint1');
+    if(got_hint.has('hint3')) hint3_content = got_hint.get('hint3');
+
     document.getElementById('hint1').innerHTML = hint1_content;
-    document.getElementById('hint2').innerHTML = hint2_content;
+    document.getElementById('hint3').innerHTML = hint3_content;
 
   });
   
@@ -45,10 +50,8 @@ document.getElementById('connect').addEventListener('click', async () => {
   cube.on('id:position-id', info => {
     document.getElementById('position-id').innerHTML = JSON.stringify(info);
 
-    var hint3_content = '';
-
     var angle = info.angle;
-    if(is_got_hint2){
+    if(got_hint.has('hint1')){
       if(!is_set_initial_angle){
         is_set_initial_angle = true;
         clockwise_cnt = 0;
@@ -71,11 +74,14 @@ document.getElementById('connect').addEventListener('click', async () => {
     document.getElementById('clockwise-cnt').innerHTML = clockwise_cnt;
     document.getElementById('counter-clockwise-cnt').innerHTML = counter_clockwise_cnt;
 
-    if(clockwise_cnt >=1 && counter_clockwise_cnt >= 2 || is_got_hint3){
-      is_got_hint3 = true;
-      hint3_content = hint3_text;
+    if(clockwise_cnt >=1 && counter_clockwise_cnt >= 2){
+      got_hint.set('hint2', hint_text.get('hint2'));
+      //play sound
     }
-    document.getElementById('hint3').innerHTML = hint3_content;
+
+    let hint2_content = '';
+    if(got_hint.has('hint2')) hint2_content = got_hint.get('hint2');
+    document.getElementById('hint2').innerHTML = hint2_content;
   });
  
   cube.on('id:position-id-missed', () => {
