@@ -23,14 +23,16 @@ document.getElementById('connect').addEventListener('click', async () => {
     //document.getElementById('standard-id').innerHTML = JSON.stringify(info);
     var id = info.standardId;
 
-    if(id == '3670054'){
+    if(id == '3670054' && !got_hint.has('hint1')){
       got_hint.set('hint1', hint_text.get('hint1'));
       //play sound
+      cube.playPresetSound('3');
     }
 
-    if(id == '3670022' && got_hint.has('hint2')){
+    if(id == '3670022' && got_hint.has('hint2') && !got_hint.has('hint3')){
       got_hint.set('hint3', hint_text.get('hint3'));
       //play sound
+      cube.playPresetSound('3');
     }
 
     let hint1_content = '';
@@ -62,8 +64,14 @@ document.getElementById('connect').addEventListener('click', async () => {
         var diff = angle - last_angle;
         var diff2 = last_angle - last_angle2;
         if(Math.abs(diff) > 3 && Math.abs(diff2) > 3){
-          if(diff2 > 0 && diff < 0 && angle < 50 && last_angle > 310){clockwise_cnt++;}
-          if(diff2 < 0 && diff > 0 && angle > 310 && last_angle < 50){counter_clockwise_cnt++;}
+          if(diff2 > 0 && diff < 0 && angle < 50 && last_angle > 310){
+            clockwise_cnt++;
+            cube.playPresetSound('1');
+          }
+          if(diff2 < 0 && diff > 0 && angle > 310 && last_angle < 50){
+            counter_clockwise_cnt++;
+            cube.playPresetSound('1');
+          }
         }
 
         last_angle2 = last_angle;
@@ -74,9 +82,10 @@ document.getElementById('connect').addEventListener('click', async () => {
     //document.getElementById('clockwise-cnt').innerHTML = clockwise_cnt;
     //document.getElementById('counter-clockwise-cnt').innerHTML = counter_clockwise_cnt;
 
-    if(clockwise_cnt >=1 && counter_clockwise_cnt >= 2){
+    if(clockwise_cnt >=1 && counter_clockwise_cnt >= 2 && !got_hint.has('hint2')){
       got_hint.set('hint2', hint_text.get('hint2'));
       //play sound
+      cube.playPresetSound('3');
     }
 
     let hint2_content = '';
