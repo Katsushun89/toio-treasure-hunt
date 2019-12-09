@@ -20,7 +20,7 @@ document.getElementById('connect').addEventListener('click', async () => {
 
   await cube.connect();
   cube.on('id:standard-id', info => {
-    document.getElementById('standard-id').innerHTML = JSON.stringify(info);
+    //document.getElementById('standard-id').innerHTML = JSON.stringify(info);
     var id = info.standardId;
 
     if(id == '3670054'){
@@ -44,11 +44,11 @@ document.getElementById('connect').addEventListener('click', async () => {
   });
   
   cube.on('id:standard-id-missed', () => {
-    document.getElementById('standard-id').innerHTML = '';
+    //document.getElementById('standard-id').innerHTML = '';
   });
   
   cube.on('id:position-id', info => {
-    document.getElementById('position-id').innerHTML = JSON.stringify(info);
+    //document.getElementById('position-id').innerHTML = JSON.stringify(info);
 
     var angle = info.angle;
     if(got_hint.has('hint1')){
@@ -71,8 +71,8 @@ document.getElementById('connect').addEventListener('click', async () => {
       }
     }
 
-    document.getElementById('clockwise-cnt').innerHTML = clockwise_cnt;
-    document.getElementById('counter-clockwise-cnt').innerHTML = counter_clockwise_cnt;
+    //document.getElementById('clockwise-cnt').innerHTML = clockwise_cnt;
+    //document.getElementById('counter-clockwise-cnt').innerHTML = counter_clockwise_cnt;
 
     if(clockwise_cnt >=1 && counter_clockwise_cnt >= 2){
       got_hint.set('hint2', hint_text.get('hint2'));
@@ -85,7 +85,7 @@ document.getElementById('connect').addEventListener('click', async () => {
   });
  
   cube.on('id:position-id-missed', () => {
-    document.getElementById('position-id').innerHTML = '';
+    //document.getElementById('position-id').innerHTML = '';
     is_set_initial_angle = false;
   });
 
