@@ -20,16 +20,14 @@
 
 <div class="display-if-connected">
   <h2 class="section center">カードを探してタッチするとヒントが出たり、能力が解放されるぞ</h2>
-  <table class="section pure-table">
-    <thead>
-      <tr>
-        <th>ヒント0</th>
-        <th>レゴの2x3ブロックが入っているケースの中</th>
-      </tr>
-    </thead>
 
+  <table class="section pure-table">
     <tbody>
-      <tr>
+     <tr>
+       <th>ヒント0</th>
+       <th>レゴの2x3ブロックが入っているケースの中</th>
+     </tr>
+     <tr>
         <td>ヒント1</td>
         <td id="hint1"></td>
       </tr>
@@ -62,6 +60,15 @@
    </tbody>
   </table>
 
+  <table id="ability" class="section center">
+    <tbody>
+      <tr>
+        <td id="ability-move" class="check">進む</td>
+        <td id="ability-rotate" class="check">回転</td>
+      </tr>
+    </tbody>
+  </table>
+ 
   <table id="move" class="section">
     <tbody>
       <tr>

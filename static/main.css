@@ -34,3 +34,12 @@
 .cube-connected .display-if-connected {
   display: block;
 }
+
+.check{
+  background-color: #e6e6fa;
+  color: white;
+  padding:5px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 120%;
+}

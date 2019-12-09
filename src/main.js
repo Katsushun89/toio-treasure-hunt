@@ -11,18 +11,25 @@ var counter_clockwise_cnt = 0;
 
 const hint_text = new Map([['hint1', 'マットの上でtoioを時計回りに1回,反時計回りに2回回転させろ'],
                            ['hint2', 'ドラゴンボール34巻に挟まれている'],
-                           ['hint3', 'toioでゴールを目指せ']]);
+                           ['hint3', '前に進めるようになったtoioでゴールを目指せ']]);
 let got_hint = new Map();
 
 class Ability {
   constructor() {
     this.move = false;
     this.rotate = false;
+    //document.getElementById('ability-move').style.backgroundcolor = 'gray';
   }
   canMove() {return this.move;}
   canRotate() {return this.rotate;}
-  enableMove() {this.move = true;}
-  enableRotate() { this.rotate = true;}
+  enableMove() {
+    this.move = true;
+    document.getElementById('ability-move').style.color = 'blue';
+  }
+  enableRotate() {
+    this.rotate = true;
+    document.getElementById('ability-rotate').style.color = 'blue';
+  }
 };
 
 const ability = new Ability();
