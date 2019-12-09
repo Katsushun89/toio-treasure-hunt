@@ -14,6 +14,24 @@ const hint_text = new Map([['hint1', 'マットの上でtoioを時計回りに1�
                            ['hint3', 'toioでゴールを目指せ']]);
 let got_hint = new Map();
 
+class Ability {
+  constructor() {
+    this.move = false;
+    this.rotate = false;
+  }
+  canMove() {return this.move;}
+  canRotate() {return this.rotate;}
+  enableMove() {this.move = true;}
+  enableRotate() { this.rotate = true;}
+};
+
+const ability = new Ability();
+
+const moveFoward   = () => { if(ability.canMove()) cube.move(30, 30, 0)};
+const moveBackward = () => { if(ability.canMove()) cube.move(-30, -30, 0)};
+const rotateCW     = () => { if(ability.canRotate()) cube.move(30, -30, 0)};
+const rotateCCW    = () => { if(ability.canRotate()) cube.move(-30, 30, 0)};
+
 document.getElementById('connect').addEventListener('click', async () => {
   cube = await new NearestScanner().start();
   document.body.className = 'cube-connecting';
@@ -27,12 +45,14 @@ document.getElementById('connect').addEventListener('click', async () => {
       got_hint.set('hint1', hint_text.get('hint1'));
       //play sound
       cube.playPresetSound('3');
+      ability.enableRotate();
     }
 
     if(id == '3670022' && got_hint.has('hint2') && !got_hint.has('hint3')){
       got_hint.set('hint3', hint_text.get('hint3'));
       //play sound
       cube.playPresetSound('3');
+      ability.enableMove();
     }
 
     let hint1_content = '';
@@ -101,18 +121,18 @@ document.getElementById('connect').addEventListener('click', async () => {
   document.body.className = 'cube-connected';
 });
 
-document.getElementById('move-forward').addEventListener('touchstart', async () => cube.move(30, 30, 0));
-document.getElementById('move-backward').addEventListener('touchstart', async () => cube.move(-30, -30, 0));
-document.getElementById('move-left').addEventListener('touchstart', async () => cube.move(-30, 30, 0));
-document.getElementById('move-right').addEventListener('touchstart', async () => cube.move(30, -30, 0));
+document.getElementById('move-forward').addEventListener('touchstart', async () => moveFoward() );
+document.getElementById('move-backward').addEventListener('touchstart', async () => moveBackward());
+document.getElementById('move-left').addEventListener('touchstart', async () => rotateCCW());
+document.getElementById('move-right').addEventListener('touchstart', async () => rotateCW());
 document.getElementById('move').addEventListener('touchstart', async ev => ev.preventDefault());
 document.getElementById('move').addEventListener('touchend', async () => cube.stop());
 document.getElementById('move').addEventListener('touchend', async ev => ev.preventDefault());
 
-document.getElementById('move-forward').addEventListener('mousedown', async () => cube.move(30, 30, 0));
-document.getElementById('move-backward').addEventListener('mousedown', async () => cube.move(-30, -30, 0));
-document.getElementById('move-left').addEventListener('mousedown', async () => cube.move(-30, 30, 0));
-document.getElementById('move-right').addEventListener('mousedown', async () => cube.move(30, -30, 0));
+document.getElementById('move-forward').addEventListener('mousedown', async () => moveFoward());
+document.getElementById('move-backward').addEventListener('mousedown', async () => moveBackward());
+document.getElementById('move-left').addEventListener('mousedown', async () => rotateCCW());
+document.getElementById('move-right').addEventListener('mousedown', async () => rotateCW());
 document.getElementById('move').addEventListener('mouseup', async () => cube.stop());
 document.getElementById('move').addEventListener('mouseleave', async () => cube.stop());
 
